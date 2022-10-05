@@ -59,7 +59,7 @@ class meta(Resource):
 api.add_resource(Hello, '/')
 api.add_resource(Square, '/square/<int:num>')
 api.add_resource(cube,'/cube/<int:num>')
-api.add_resource(meta,'/meta/<str:s>')
+api.add_resource(meta,'/meta/<s>') # this was wrong earlier, should be directly parameter name in case of string
 # driver function
 # i dont think this is required anymore
 '''
