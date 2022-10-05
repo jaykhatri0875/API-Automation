@@ -26,25 +26,19 @@ class Hello(Resource):
 		data = request.get_json()	 # status code
 		return jsonify({'data': data}), 201
 
-
 # another resource to calculate the square of a number
 class Square(Resource):
-
 	def get(self, num):
-
 		return jsonify({'square': num**2})
 
 class cube(Resource):
-
 	def get(self, num):
-
-		return jsonify({'cube': num**3})
+		return jsonify({'Cube of number': num**3})
 # this is webhook for CD -- do not change
 
 @app.route('/update-server', methods=['POST'])
 def webhook():
     if request.method == 'POST':
-
         repo = git.Repo('./API-Automation')
         origin = repo.remotes.origin
         origin.pull()
