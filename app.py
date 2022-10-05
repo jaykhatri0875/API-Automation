@@ -54,6 +54,7 @@ class meta(Resource):
 			'this is string you typed':s
 		})
 
+# is this even working fine ?
 # adding the defined resources along with their corresponding urls
 api.add_resource(Hello, '/')
 api.add_resource(Square, '/square/<int:num>')
