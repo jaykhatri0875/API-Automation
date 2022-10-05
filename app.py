@@ -33,6 +33,14 @@ class Square(Resource):
 	def get(self, num):
 
 		return jsonify({'square': num**2})
+
+class cube(Resource):
+
+	def get(self, num):
+
+		return jsonify({'square': num**3})
+# this is webhook for CD -- do not change
+
 @app.route('/update-server', methods=['POST'])
 def webhook():
     if request.method == 'POST':
@@ -42,11 +50,12 @@ def webhook():
         return 'Updated PythonAnywhere successfully', 200
     else:
         return 'Wrong event type', 400
+##
 
 # adding the defined resources along with their corresponding urls
 api.add_resource(Hello, '/')
 api.add_resource(Square, '/square/<int:num>')
-
+api.add_resource(cube,'/cube/<int:num>')
 
 # driver function
 if __name__ == '__main__':
