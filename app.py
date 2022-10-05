@@ -44,7 +44,8 @@ class cube(Resource):
 @app.route('/update-server', methods=['POST'])
 def webhook():
     if request.method == 'POST':
-        repo = git.Repo('path/to/git_repo')
+
+        repo = git.Repo('./API-Automation')
         origin = repo.remotes.origin
         origin.pull()
         return 'Updated PythonAnywhere successfully', 200
