@@ -7,12 +7,26 @@ app = Flask(__name__)
 # creating an API object
 api = Api(app)
 
+
+#######################################################
+# this is webhook for CD -- do not change
+
+@app.route('/update-server', methods=['POST'])
+def webhook():
+    if request.method == 'POST':
+        repo = git.Repo('./API-Automation')
+        origin = repo.remotes.origin
+        origin.pull()
+        return 'Updated PythonAnywhere successfully', 200
+    else:
+        return 'Wrong event type', 400
+#######################################################
+
 # making a class for a particular resource
 # the get, post methods correspond to get and post requests
 # they are automatically mapped by flask_restful.
 # other methods include put, delete, etc.
 class Hello(Resource):
-
 	# corresponds to the GET request.
 	# this function is called whenever there
 	# is a GET request for this resource
@@ -34,24 +48,20 @@ class Square(Resource):
 class cube(Resource):
 	def get(self, num):
 		return jsonify({'Cube of number': num**3})
-# this is webhook for CD -- do not change
-
-@app.route('/update-server', methods=['POST'])
-def webhook():
-    if request.method == 'POST':
-        repo = git.Repo('./API-Automation')
-        origin = repo.remotes.origin
-        origin.pull()
-        return 'Updated PythonAnywhere successfully', 200
-    else:
-        return 'Wrong event type', 400
-##
+class meta(Resource):
+	def get(self,s):
+		return jsonify({
+			'this is string you typed':s
+		})
 
 # adding the defined resources along with their corresponding urls
 api.add_resource(Hello, '/')
 api.add_resource(Square, '/square/<int:num>')
 api.add_resource(cube,'/cube/<int:num>')
-
+api.add_resource(meta,'/meta/<str:s>')
 # driver function
+# i dont think this is required anymore
+'''
 if __name__ == '__main__':
 	app.run(debug = True)
+'''
