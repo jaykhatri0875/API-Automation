@@ -49,9 +49,9 @@ class cube(Resource):
 	def get(self, num):
 		return jsonify({'Cube of number': num**3})
 class meta(Resource):
-	def get(self,s):
+	def get(self):
 		return jsonify({
-			'this is string you typed':s
+			'this is string you typed':'STRING'
 		})
 
 # is this even working fine ?
@@ -59,7 +59,7 @@ class meta(Resource):
 api.add_resource(Hello, '/')
 api.add_resource(Square, '/square/<int:num>')
 api.add_resource(cube,'/cube/<int:num>')
-api.add_resource(meta,'/meta/<s>') # this was wrong earlier, should be directly parameter name in case of string
+api.add_resource(meta,'/meta') # this was wrong earlier, should be directly parameter name in case of string
 # driver function
 # i dont think this is required anymore
 '''
