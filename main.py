@@ -1,7 +1,7 @@
 # using flask_restful
 from flask import Flask, jsonify, request
 from flask_restful import Resource, Api
-
+import git
 # creating the flask app
 app = Flask(__name__)
 # creating an API object
@@ -33,7 +33,15 @@ class Square(Resource):
 	def get(self, num):
 
 		return jsonify({'square': num**2})
-
+@app.route('/update-server', methods=['POST'])
+def webhook():
+    if request.method == 'POST':
+        repo = git.Repo('path/to/git_repo')
+        origin = repo.remotes.origin
+        origin.pull()
+        return 'Updated PythonAnywhere successfully', 200
+    else:
+        return 'Wrong event type', 400
 
 # adding the defined resources along with their corresponding urls
 api.add_resource(Hello, '/')
