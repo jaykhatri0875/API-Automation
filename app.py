@@ -38,7 +38,7 @@ class cube(Resource):
 
 	def get(self, num):
 
-		return jsonify({'square': num**3})
+		return jsonify({'cube': num**3})
 # this is webhook for CD -- do not change
 
 @app.route('/update-server', methods=['POST'])
