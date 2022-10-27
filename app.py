@@ -1,5 +1,5 @@
 # using flask_restful
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request,render_template
 from flask_restful import Resource, Api
 import git
 # creating the flask app
@@ -22,6 +22,9 @@ def webhook():
         return 'Wrong event type', 400
 #######################################################
 
+@app.route('/')
+def index():
+	return render_template('static/index.html')
 # making a class for a particular resource
 # the get, post methods correspond to get and post requests
 # they are automatically mapped by flask_restful.
@@ -66,3 +69,5 @@ api.add_resource(meta,'/meta/<int:num>') # this was wrong earlier, should be dir
 if __name__ == '__main__':
 	app.run(debug = True)
 '''
+
+#mysql -u jaykhatri0 -h jaykhatri0.mysql.pythonanywhere-services.com -p 'jaykhatri0.mysql.pythonanywhere-services.com$jaykhatri0'
