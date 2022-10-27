@@ -1,5 +1,5 @@
 # using flask_restful
-from flask import Flask, jsonify, request,render_template
+from flask import Flask, jsonify, request,render_template,make_response
 from flask_restful import Resource, Api
 import git
 # creating the flask app
@@ -24,7 +24,7 @@ def webhook():
 
 @app.route('/')
 def index():
-	return render_template('static/index.html')
+	return make_response(render_template('index.html'))
 # making a class for a particular resource
 # the get, post methods correspond to get and post requests
 # they are automatically mapped by flask_restful.
