@@ -59,7 +59,7 @@ class meta(Resource):
 
 # is this even working fine ?
 # adding the defined resources along with their corresponding urls
-api.add_resource(Hello, '/')
+#api.add_resource(Hello, '/')
 api.add_resource(Square, '/square/<int:num>')
 api.add_resource(cube,'/cube/<int:num>')
 api.add_resource(meta,'/meta/<int:num>') # this was wrong earlier, should be directly parameter name in case of string
